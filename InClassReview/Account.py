@@ -11,13 +11,25 @@ class Account():
             print("Error - You cannot deposit a negative amount")
         self.balance += amountToDeposit
         return self.balance
+    def withdraw(self, amountToWithdraw, password):
+        if password != self.password:
+            print("Incorrect Password")
+            return None
+        if amountToWithdraw < 0:
+            print("You cannot withdraw a negative amount")
+            return None
+        if amountToWithdraw > self.balance:
+            print("You canot withdraw more than your balance")
+            return None
+        self.balance -= amountToWithdraw
+        return self.balance
     def show(self):
         print(self.number)
         print(self.balance)
 def main():
     alice = Account("0001", 1000.50, "bsu")
     bob = Account("0002", 100, "iu")
-    alice.deposit(200, "bsu")
+    bob.withdraw(150, "iu")
     bob.show()
     alice.show()
 
